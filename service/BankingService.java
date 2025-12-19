@@ -40,8 +40,6 @@ public class BankingService {
 
     private void login() {
         System.out.print("Enter your name to login: ");
-        if (!scanner.hasNextLine()) return;
-        
         String name = scanner.nextLine().trim();
         if (users.containsKey(name.toLowerCase())) {
             currentUser = users.get(name.toLowerCase());
@@ -62,12 +60,13 @@ public class BankingService {
         System.out.println("7. Withdraw all investments");
         System.out.println("8. Logout");
         System.out.println("9. Exit");
-
-        if (!scanner.hasNextLine()) return true;
         System.out.print("Enter your choice: ");
-        String choice = scanner.nextLine();
-
-        return handleMenuChoice(choice);
+        try {
+            String choice = scanner.nextLine();
+            return handleMenuChoice(choice);
+        } catch (java.util.NoSuchElementException e) {
+            return false;
+        }
     }
 
     private boolean handleMenuChoice(String choice) {
