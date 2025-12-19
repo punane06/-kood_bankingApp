@@ -40,6 +40,7 @@ public class BankingService {
 
     private void login() {
         System.out.print("Enter your name to login: ");
+        System.out.flush();
         String name = scanner.nextLine().trim();
         if (users.containsKey(name.toLowerCase())) {
             currentUser = users.get(name.toLowerCase());
@@ -61,6 +62,7 @@ public class BankingService {
         System.out.println("8. Logout");
         System.out.println("9. Exit");
         System.out.print("Enter your choice: ");
+        System.out.flush();
         try {
             String choice = scanner.nextLine();
             return handleMenuChoice(choice);
