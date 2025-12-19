@@ -1,13 +1,12 @@
 package bankingApp.bankingApp.service;
 
+import bankingApp.bankingApp.Fund;
+import bankingApp.bankingApp.InvalidAmountException;
+import bankingApp.bankingApp.User;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-
-import bankingApp.bankingApp.Fund;
-import bankingApp.bankingApp.InvalidAmountException;
-import bankingApp.bankingApp.User;
 
 public class BankingService {
     private final Scanner scanner;
@@ -32,13 +31,15 @@ public class BankingService {
             if (currentUser == null) {
                 login();
             } else {
-                displayMenu();
+                if (!displayMenu()) {
+                    break;
+                }
             }
         }
     }
 
     private void login() {
-        System.out.println("Enter your name to log in:");
+        System.out.print("Enter your name to login: ");
         if (!scanner.hasNextLine()) return;
         
         String name = scanner.nextLine().trim();
@@ -49,8 +50,9 @@ public class BankingService {
             System.out.println("Error: User not found.");
         }
     }
-    private void displayMenu() {
-        System.out.println("\n --- Banking App Menu ---");
+    private boolean displayMenu() {
+        System.out.println();
+        System.out.println("--- Banking App Menu ---");
         System.out.println("1. Show balance");
         System.out.println("2. Deposit money");
         System.out.println("3. Withdraw money");
@@ -61,13 +63,14 @@ public class BankingService {
         System.out.println("8. Logout");
         System.out.println("9. Exit");
 
-        if (!scanner.hasNextLine()) return;
+        if (!scanner.hasNextLine()) return true;
+        System.out.print("Enter your choice: ");
         String choice = scanner.nextLine();
 
-        handleMenuChoice(choice);
+        return handleMenuChoice(choice);
     }
 
-    private void handleMenuChoice(String choice) {
+    private boolean handleMenuChoice(String choice) {
         try {
             switch (choice) {
                 case "1":
@@ -97,17 +100,15 @@ public class BankingService {
                     System.out.println("Logged out.");
                     break;
                 case "9":
-                    System.out.println("Exiting...");
-                    // Do NOT use System.exit(0)
-                    // Instead, we can use a flag to break the loop or just return
-                    // For simplicity, we'll let the loop finish if we change it to a boolean
-                    return;
+                    System.out.println("Thank you for using our banking app. Goodbye!");
+                    return false;
                 default:
                     System.out.println("Invalid option.");
             }
         } catch (InvalidAmountException e) {
             System.out.println("Error: " + e.getMessage());
         }
+        return true;
     }
 
     private void showBalance() {
