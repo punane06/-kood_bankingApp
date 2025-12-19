@@ -1,4 +1,4 @@
-package bankingApp.bankingApp;
+package bankingApp.model;
 
 import java.math.BigDecimal;
 

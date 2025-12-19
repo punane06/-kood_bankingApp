@@ -1,4 +1,4 @@
-package bankingApp.bankingApp;
+package bankingApp.model;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -30,7 +30,7 @@ public class InvestmentAccount extends Account {
         return investedAmounts;
     }
 
-    public void withdrawAllInvestements() {
+    public void withdrawAllInvestments() {
         for (Fund fund : Fund.values()) {
             balance = balance.add(investedAmounts.get(fund));
             investedAmounts.put(fund, BigDecimal.ZERO);

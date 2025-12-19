@@ -1,4 +1,4 @@
-package bankingApp.bankingApp;
+package bankingApp.model;
 
 import java.math.BigDecimal;
 
@@ -15,5 +15,5 @@ public enum Fund {
 
     public BigDecimal getRate() {
         return rate;
-}
+    }
 }

@@ -1,8 +1,8 @@
-package bankingApp.bankingApp.service;
+package bankingApp.service;
 
-import bankingApp.bankingApp.Fund;
-import bankingApp.bankingApp.InvalidAmountException;
-import bankingApp.bankingApp.User;
+import bankingApp.exception.InvalidAmountException;
+import bankingApp.model.Fund;
+import bankingApp.model.User;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
@@ -54,8 +54,7 @@ public class BankingService {
     }
 
     private boolean displayMenu() {
-        System.out.println();
-        System.out.println("--- Banking App Menu ---");
+        System.out.println(" --- Banking App Menu ---");
         System.out.println("1. Show balance");
         System.out.println("2. Deposit money");
         System.out.println("3. Withdraw money");
@@ -94,7 +93,7 @@ public class BankingService {
                     if (!transfer()) return false;
                     break;
                 case "7":
-                    currentUser.getInvestmentAccount().withdrawAllInvestements();
+                    currentUser.getInvestmentAccount().withdrawAllInvestments();
                     System.out.println("All investments withdrawn.");
                     break;
                 case "8":
@@ -131,7 +130,6 @@ public class BankingService {
 
     private boolean deposit() throws InvalidAmountException {
         System.out.println("Enter amount to deposit:");
-        System.out.print("");
         System.out.flush();
         if (!scanner.hasNextLine()) return false;
         String input = scanner.nextLine();
@@ -155,7 +153,6 @@ public class BankingService {
 
     private boolean withdraw() throws InvalidAmountException {
         System.out.println("Enter amount to withdraw:");
-        System.out.print("");
         System.out.flush();
         if (!scanner.hasNextLine()) return false;
         String input = scanner.nextLine();
@@ -179,7 +176,6 @@ public class BankingService {
 
     private boolean sendMoney() throws InvalidAmountException {
         System.out.println("Enter recipient name:");
-        System.out.print("");
         System.out.flush();
         if (!scanner.hasNextLine()) return false;
         String recipientName = scanner.nextLine().trim().toLowerCase();
@@ -191,7 +187,6 @@ public class BankingService {
             throw new InvalidAmountException("You cannot send money to yourself.");
         }
         System.out.println("Enter amount to send:");
-        System.out.print("");
         System.out.flush();
         if (!scanner.hasNextLine()) return false;
         try {
@@ -217,12 +212,10 @@ public class BankingService {
         System.out.println("Select transfer direction:");
         System.out.println("1. Savings to Investment");
         System.out.println("2. Investment to Savings");
-        System.out.print("");
         System.out.flush();
         if (!scanner.hasNextLine()) return false;
         String direction = scanner.nextLine();
         System.out.println("Enter amount:");
-        System.out.print("");
         System.out.flush();
         if (!scanner.hasNextLine()) return false;
         try {
@@ -258,7 +251,6 @@ public class BankingService {
         System.out.println("1. LOW_RISK (2%)");
         System.out.println("2. MEDIUM_RISK (5%)");
         System.out.println("3. HIGH_RISK (10%)");
-        System.out.print("");
         System.out.flush();
         if (!scanner.hasNextLine()) return false;
         String fundChoice = scanner.nextLine();
@@ -272,7 +264,6 @@ public class BankingService {
                 return true;
         }
         System.out.println("Enter amount to invest from your investment account:");
-        System.out.print("");
         System.out.flush();
         if (!scanner.hasNextLine()) return false;
         try {

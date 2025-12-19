@@ -1,6 +1,6 @@
-package bankingApp.bankingApp;
+package bankingApp;
 
-import bankingApp.bankingApp.service.BankingService;
+import bankingApp.service.BankingService;
 
 public class BankingApp {
     public static void main(String[] args) {
