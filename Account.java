@@ -15,6 +15,5 @@ public abstract class Account {
 
     public void setBalance(BigDecimal balance) {
         this.balance = balance;
-    
     }
 }
